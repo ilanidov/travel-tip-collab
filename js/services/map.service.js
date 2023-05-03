@@ -3,21 +3,29 @@ export const mapService = {
     addMarker,
     panTo
 }
-
+// var glocation = {
+//     lat:1,
+//     lang:2
+// }
 
 // Var that is used throughout this Module (not global)
 var gMap
 
-function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap')
+function initMap(lat = 32.0995328, lng = 34.9831168) {
+
+    // console.log('InitMap')
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available')
+            // console.log('google available')
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
+            gMap.addListener("click", (mapsMouseEvent) => {
+              console.log(JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2))
+            })
+
             console.log('Map!', gMap)
         })
 }
