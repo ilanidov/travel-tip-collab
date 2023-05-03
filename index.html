@@ -5,15 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip!</title>
 </head>
+
 <body>
-    <h1>TravelTip Starter</h1>
+
+    <header class="main-header">
+
+        <h1 class="logo">TravelTip Starter</h1>
+
+        <form onsubmit="onSearchLocation(event)" for="search-location">
+            <input id="search-location" type="search" class="search-nav">
+            <button>Search</button>
+        </form>
+        <button class="my-location-btn"></button>
+
+    </header>
+
+    <header class="sub-header">
+
+        <h2 class="sub-header-title">TravelTip Starter</h2>
+        <button class="copy-location-btn"></button>
+
+    </header>
+
+    <section class="weather"></section>
+    <section class="locations">
+        <ul>
+            <li></li>
+        </ul>
+    </section>
+
     <div id="map" style="width: 100%; height: 400px;"></div>
+
     <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
     <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
     <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
     <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
 
+
+
     <p>You are at: <span class="user-pos"></span></p>
+
+
+
     <p>Locations: 
         <pre class="locs"></pre>
     </p>
@@ -21,4 +54,5 @@
 
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>

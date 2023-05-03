@@ -8,7 +8,10 @@ export const mapService = {
     panTo,
 
 }
-
+// var glocation = {
+//     lat:1,
+//     lang:2
+// }
 
 // Var that is used throughout this Module (not global)
 var gMap
