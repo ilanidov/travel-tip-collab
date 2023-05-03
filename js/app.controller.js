@@ -10,10 +10,15 @@ window.onGetUserPos = onGetUserPos
 function onInit() {
     mapService.initMap()
         .then(() => {
-            console.log('Map is ready')
+            // console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
 }
+
+
+
+
+
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {

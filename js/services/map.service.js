@@ -1,7 +1,12 @@
+import { locService } from './loc.service.js'
+
+
+
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+
 }
 
 
@@ -9,26 +14,43 @@ export const mapService = {
 var gMap
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap')
     return _connectGoogleApi()
         .then(() => {
-            console.log('google available')
+            // console.log('google available')
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
             })
-            console.log('Map!', gMap)
+            // console.log('Map!', gMap)
+            gMap.addListener("click", (mapsMouseEvent) => {
+                let selectedCords = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // console.log(selectedCords)
+                locService.addPlace(selectedCords)
+            })
         })
 }
 
+
+
+
+
+
 function addMarker(loc) {
-    var marker = new google.maps.Marker({
-        position: loc,
-        map: gMap,
-        title: 'Hello World!'
-    })
-    return marker
+    // get last location
+    locService.query()
+        .then((res) => {
+            console.log(res)
+            let lastLocation = res[res.length-1]
+            console.log(lastLocation)
+            var marker = new google.maps.Marker({
+                position: lastLocation,
+                map: gMap,
+                title: 'Hello World!'
+            })
+            return marker
+        })
+
 }
 
 function panTo(lat, lng) {
